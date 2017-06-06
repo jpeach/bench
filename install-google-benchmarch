@@ -1,0 +1,22 @@
+#! /usr/bin/env bash
+
+set -e
+set -o pipefail
+
+PREFIX=${PREFIX:-/opt/google-benchmark}
+TMPDIR=${TMPDIR:-/tmp}
+BUILDDIR=${BUILDDIR:-$TMPDIR/gbench.$$}
+
+mkdir -p $BUILDDIR/build
+
+git clone --depth 1 https://github.com/google/benchmark $BUILDDIR/src
+
+cd $BUILDDIR/build
+
+cmake \
+    -DCMAKE_INSTALL_PREFIX=/opt/google-bench \
+    -DCMAKE_BUILD_TYPE=Release \
+    $BUILDDIR/src
+
+make -j $(( $(getconf _NPROCESSORS_ONLN) * 2 ))
+sudo make install
