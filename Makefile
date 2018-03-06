@@ -10,6 +10,9 @@ LDLIBS := -lbenchmark
 
 Link_Benchmark = $(CXX) -o $@ $^ $(CXXFLAGS) $(LDFLAGS) $(LDLIBS)
 
+bench: tls
+	./tls --benchmark_min_time=30
+
 tls: tls.o
 	$(Link_Benchmark)
 
