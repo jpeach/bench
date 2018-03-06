@@ -3,7 +3,7 @@ GBENCH_LDFLAGS := -L$(GBENCH_PREFIX)/lib
 GBENCH_CPPFLAGS := -I$(GBENCH_PREFIX)/include
 
 OPT := -O2
-CXXFLAGS := -std=c++11 -Wall -pthread -g
+CXXFLAGS := $(OPT) -std=c++11 -Wall -pthread -g
 CPPFLAGS := $(GBENCH_CPPFLAGS)
 LDFLAGS := $(GBENCH_LDFLAGS)
 LDLIBS := -lbenchmark
